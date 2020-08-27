@@ -1,0 +1,19 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 25px auto;
+    width: 95%;
+}
+
+button {
+    background-color: purple;
+    color: white;
+}
