@@ -1,27 +1,13 @@
-//link "view high score" to retrieve high schore from localStorage
-
-//create countdown timer in <header div.timer> section of HTML
-
-//create intro text and "start quiz" button -  on "click", it will load virst item in questions/answers array
-
-//create questions/answers array. - style so question is black bold TEXT. answers should be BUTTONS, purple background, white text. 
-
-//style answers so they change color on "hover"
-
-//use "if" statement to check if right/wrong
-
-//if "right", display "correct!" and update score in local storage
-
-//if "wrong", display "wrong!" and give a time penalty of ten seconds
-
-//at end of quiz, display high score. let them ENTER INTIALS (FORM input?)
-//add high score to local storage
+//assign variable for entire page to make it easy to find elements on click
+var pageBodyEl = document.querySelector(".page-body");
+//assign variable to "Start Quiz" button
+var startButton = document.querySelector("#start-quiz");
 
 //array with quiz Qs and As
 var quiz = [
     {
         question: "How can we make an event happen by clicking on an element?",
-        answers: {
+        answer: {
             a: "add addEventListener('mouseclick')",
             b: "addEventListener('target')",
             c: "var UponClick = function(click)",
@@ -120,3 +106,67 @@ var quiz = [
         correctAnswer: "a"
     },
 ];
+
+//style the quiz array so question is black bold TEXT. answers should be BUTTONS, purple background, white text. 
+
+//click start quiz button to start quiz.
+
+//link "view high score" to retrieve high schore from localStorage
+
+//create countdown timer in <header div.timer> section of HTML
+
+//create intro text and "start quiz" button -  on "click", it will load virst item in questions/answers array
+
+//style answers so they change color on "hover"
+
+//use "if" statement to check if right/wrong
+
+//if "right", display "correct!", give "correct sound" and update score in local storage
+
+//if "wrong", display "wrong!" and give a time penalty of ten seconds AND sound buzzer
+
+//at end of quiz, display high score. let them ENTER INTIALS (FORM input?)
+//add high score to local storage
+//style everything in CSS....
+//can style hover questions inline in JS I think
+
+//function to find elements on page by clicking
+var findElement = function (event) {
+    console.log(event.target)
+};
+
+//function to start quiz
+var startQuiz = function () {
+    //delete everything in main section page, and load first question (variable 0 of quiz array)
+    var startPage = document.querySelector("#start-page")
+    startPage.remove();
+    loadQuiz();
+}
+
+
+var loadQuiz = function () {
+    // for (i = 0; i < quiz.length; i++) {
+    //     //load variable 0 of array, create elements on the page
+    //     //create a heading with the Question
+    var titleEl = document.querySelector("#question-title");
+    titleEl.textContent = quiz[0].question;
+
+
+    //     //create order list for answers 
+    //     var choiceEl = document.getElementById("choices");
+    //     choiceEl.textContent = quiz[0].answer;
+    //     // //create a div to append them to
+    //     // var quizEl = document.createElement("div");
+    //     // quizEl.className = "quiz";
+    //     // quizEl.innerHTML = "<main class='quiz'>";
+    // //append quiz q and a to div
+    // quizEl.appendChild(quizQuestionEl);
+    // quizEl.appendChild(quizAnswersEl);
+}
+
+
+
+//find elements in HTML/DOM by clicking on them
+pageBodyEl.addEventListener("click", findElement);
+//click event for start quiz button
+startButton.addEventListener("click", startQuiz);

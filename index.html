@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./assets/style.css">
 </head>
 
-<body>
+<body class="page-body">
     <header>
         <div>
             <p>View High Scores</p>
@@ -21,17 +21,25 @@
         </div>
     </header>
 
-    <main class="quiz">
-        <h2>Coding Quiz Challenge</h2>
-        <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers
+    <main class="quiz" id="start-page">
+        <h2 id="quiz-title">Coding Quiz Challenge</h2>
+        <p id="quiz-intro">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers
             will penalize your score/time by ten second!</p>
         <div>
             <button class="btn" id="start-quiz" type="submit">
                 Start Quiz
             </button>
         </div>
+        <div id="questions">
+            <h2 id="question-title">
+
+            </h2>
+            <div id="choices">
+
+            </div>
+        </div>
     </main>
-    <script src="./assets/js/script.js"></script>
+    <script src="./assets/script.js"></script>
 </body>
 
 </html>

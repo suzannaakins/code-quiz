@@ -17,3 +17,8 @@ button {
     background-color: purple;
     color: white;
 }
+
+.question-header {
+    color: black;
+    text-align: center;
+}
