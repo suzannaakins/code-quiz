@@ -2,108 +2,161 @@
 var pageBodyEl = document.querySelector(".page-body");
 //assign variable to "Start Quiz" button
 var startButton = document.querySelector("#start-quiz");
+//variable for timer
+var timerEl = document.getElementById('countdown');
+//variable for div that shows text on page
+var pageMessage = document.getElementById('main-page')
 
-//array with quiz Qs and As
-var quiz = [
+// Timer function that counts down from 90 second (1.5 min), called when start button is clicked
+function countdown() {
+    var timeLeft = 90;
+
+    // Use the `setInterval()` method to call a function to be executed every second
+    var timeInterval = setInterval(function () {
+        if (timeLeft > 1) {
+            timerEl.textContent = timeLeft + ' seconds remaining';
+            timeLeft--;
+        } else if (timeLeft === 1) {
+            timerEl.textContent = timeLeft + ' second remaining';
+            timeLeft--;
+        } else {
+            pageMessage.textContent = 'Time is Up!  Your final score is FINALSCOREVARIABLE.  Enter initials: INPUT FORM. SUBMIT BUTTON.';
+            clearInterval(timeInterval);
+        }
+    }, 1000);
+};
+
+//array with quiz Qs
+var questions = [
     {
-        question: "How can we make an event happen by clicking on an element?",
-        answer: {
-            a: "add addEventListener('mouseclick')",
-            b: "addEventListener('target')",
-            c: "var UponClick = function(click)",
-            d: "element.addEventListener('click', function)"
-        },
-        correctAnswer: "d"
+        question: "1. How can we make an event happen by clicking on an element?"
     },
     {
-        question: "What does document.querySelector('#btn') do?",
-        answers: {
-            a: "targets an element in the HTML by its id",
-            b: "targets an element in the DOM by its id",
-            c: "targets element in the DOM by its class",
-            d: "makes the browser inquire on the element"
-        },
-        correctAnswer: "b"
+        question: "2. What does document.querySelector('#btn') do?",
     },
     {
-        question: "How can you add a header element to the DOM?",
-        answers: {
-            a: "var headerEl = document.createElement('header')",
-            b: "",
-            c: "",
-            d: ""
-        },
-        correctAnswer: "a"
+        question: "3. How can you add a header element to the DOM?",
     },
     {
-        question: "What does headerEl.appendChild(textEl) do?",
-        answers: {
-            a: "adds textEl as a child element to the headerEl parent in the CSS",
-            b: "adds textEl as a child element to the headerEl parent in the HTML",
-            c: "adds textEl as a child element to the headerEl parent in the DOM",
-            d: "creates an opportunity for the child to give an appendix to the parent"
-        },
-        correctAnswer: "c"
+        question: "4. What does headerEl.appendChild(textEl) do?",
     },
     {
-        question: "How do you pass a number into local storage?",
-        answers: {
-            a: "solidify",
-            b: "beautify",
-            c: "numerify",
-            d: "stringify"
-        },
-        correctAnswer: "d"
+        question: "5. How do you pass a number into local storage?",
     },
     {
-        question: "How do you change a string into an array in the DOM?",
-        answers: {
-            a: "parsley()",
-            b: "parse()",
-            c: "purse()",
-            d: "PercyWeasley()"
-        },
-        correctAnswer: "b"
+        question: "6. How do you change a string into an array in the DOM?",
     },
     {
-        question: "What is 'dragstart' in JavaScript?",
-        answers: {
-            a: "the Opening Ceremonies of The Annual Coders Drag Competition in Palm Springs",
-            b: "when the coder first starts dragging their code around the JS file to refactor it",
-            c: "code for 'dragrace,' every coder's secret passion",
-            d: "an event listener for when the user starts to drag an element"
-        },
-        correctAnswer: "d"
+        question: "7. What is 'dragstart' in JavaScript?",
     },
     {
-        question: "What does HTML stand for?",
-        answers: {
-            a: "Hot Toddy Makes Life",
-            b: "High Tide Marks Lunar",
-            c: "Hypertext Markup Language",
-            d: "Hot Toes Model Linens"
-        },
-        correctAnswer: "c"
+        question: "8. What does HTML stand for?",
     },
     {
-        question: "What does CSS stand for?",
-        answers: {
-            a: "Coders See Signs",
-            b: "Can't Stand Silence",
-            c: "Colon Synch Style",
-            d: "Cascading Style Sheets"
-        },
-        correctAnswer: "d"
+        question: "9. What does CSS stand for?",
     },
     {
-        question: "What do you get when you combine HTML, CSS, and Javascript",
-        answers: {
-            a: "all of the below",
-            b: "an application",
-            c: "a website",
-            d: "a headache"
-        },
-        correctAnswer: "a"
+        question: "10. What do you get when you combine HTML, CSS, and Javascript",
+    },
+];
+
+//array with quiz CHOICES
+var choices = [
+    {
+        a: "add addEventListener('mouseclick')",
+        b: "addEventListener('target')",
+        c: "var UponClick = function(click)",
+        d: "element.addEventListener('click', function)"
+    },
+    {
+        a: "targets an element in the HTML by its id",
+        b: "targets an element in the DOM by its id",
+        c: "targets element in the DOM by its class",
+        d: "makes the browser inquire on the element"
+    },
+    {
+        a: "var headerEl = document.createElement('header')",
+        b: "",
+        c: "",
+        d: ""
+    },
+    {
+        a: "adds textEl as a child element to the headerEl parent in the CSS",
+        b: "adds textEl as a child element to the headerEl parent in the HTML",
+        c: "adds textEl as a child element to the headerEl parent in the DOM",
+        d: "creates an opportunity for the child to give an appendix to the parent"
+    },
+    {
+        a: "solidify",
+        b: "beautify",
+        c: "numerify",
+        d: "stringify"
+    },
+
+    {
+        a: "parsley()",
+        b: "parse()",
+        c: "purse()",
+        d: "PercyWeasley()"
+    },
+    {
+        a: "the Opening Ceremonies of The Annual Coders Drag Competition in Palm Springs",
+        b: "when the coder first starts dragging their code around the JS file to refactor it",
+        c: "code for 'dragrace,' every coder's secret passion",
+        d: "an event listener for when the user starts to drag an element"
+    },
+    {
+        a: "Hot Toddy Makes Life",
+        b: "High Tide Marks Lunar",
+        c: "Hypertext Markup Language",
+        d: "Hot Toes Model Linens"
+    },
+
+    {
+        a: "Coders See Signs",
+        b: "Can't Stand Silence",
+        c: "Colon Synch Style",
+        d: "Cascading Style Sheets"
+    },
+    {
+        a: "all of the below",
+        b: "an application",
+        c: "a website",
+        d: "a headache"
+    }
+];
+
+//array with correct quiz ANSWERS
+var answers = [
+    {
+        answer: "d"
+    },
+    {
+        answer: "b"
+    },
+    {
+        answer: "a"
+    },
+    {
+        answer: "c"
+    },
+    {
+        answer: "d"
+    },
+    {
+        answer: "b"
+    },
+    {
+        answer: "d"
+    },
+    {
+        answer: "c"
+    },
+    {
+        answer: "d"
+    },
+    {
+        answer: "a"
     },
 ];
 
@@ -135,33 +188,46 @@ var findElement = function (event) {
     console.log(event.target)
 };
 
-//function to start quiz
+//function to start quiz with button
 var startQuiz = function () {
     //delete everything in main section page, and load first question (variable 0 of quiz array)
-    var startPage = document.querySelector("#start-page")
+    var startPage = document.querySelector("#start-screen")
     startPage.remove();
+    countdown();
     loadQuiz();
+};
+
+//starts Quiz
+var loadQuiz = function () {
+    for (i = 0; i < questions.length; i++) {
+        var titleEl = document.querySelector("#question-title");
+        titleEl.textContent = questions[i].question;
+    }
+    for (i = 0; i < questions.length; i++) {
+        var choices = document.querySelector("#choices");
+        choices.textContent = choices[i].a;
+        choices.textContent = choices[i].b;
+        choices.textContent = choices[i].c;
+        choices.textContent = choices[i].d;
+    }
+    if (pageBodyEl.matches(answers[i].answer)) {
+        correct()
+    }
+};
+
+//function for when user gets correct answer
+var correct = function () {
+    //display  Correct! text
+    document.getElementById("correct").textContent = "Correct!"
+    //score++ 
 }
 
-
-var loadQuiz = function () {
-    // for (i = 0; i < quiz.length; i++) {
-    //     //load variable 0 of array, create elements on the page
-    //     //create a heading with the Question
-    var titleEl = document.querySelector("#question-title");
-    titleEl.textContent = quiz[0].question;
-
-
-    //     //create order list for answers 
-    //     var choiceEl = document.getElementById("choices");
-    //     choiceEl.textContent = quiz[0].answer;
-    //     // //create a div to append them to
-    //     // var quizEl = document.createElement("div");
-    //     // quizEl.className = "quiz";
-    //     // quizEl.innerHTML = "<main class='quiz'>";
-    // //append quiz q and a to div
-    // quizEl.appendChild(quizQuestionEl);
-    // quizEl.appendChild(quizAnswersEl);
+//function for when user gets wrong answer
+var wrong = function () {
+    //display  Wrong! text
+    document.getElementById("wrong").textContent = "Wrong!"
+    //subtract 10 second from time
+    //score--
 }
 
 

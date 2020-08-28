@@ -11,32 +11,44 @@
 
 <body class="page-body">
     <header>
-        <div>
-            <p>View High Scores</p>
-        </div>
-        <div class="timer">
-            <p>
-                Time:
-            </p>
-        </div>
+        <h3>
+            View High Scores
+        </h3>
+        <h3 id="countdown">
+            Time: 90 seconds
+        </h3>
     </header>
 
-    <main class="quiz" id="start-page">
-        <h2 id="quiz-title">Coding Quiz Challenge</h2>
-        <p id="quiz-intro">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers
-            will penalize your score/time by ten second!</p>
-        <div>
-            <button class="btn" id="start-quiz" type="submit">
-                Start Quiz
-            </button>
+
+
+    <main class="quiz" id="main-page">
+        <!--DIV around WELCOME Message-->
+        <div id="start-screen" class="start">
+            <h2 id="quiz-title">Coding Quiz Challenge</h2>
+            <p id="quiz-intro">Try to answer the following code-related questions within the time limit. Keep in mind
+                that
+                incorrect answers
+                will penalize your score/time by ten second!</p>
+            <div>
+                <button class="btn" id="start-quiz" type="submit">
+                    Start Quiz
+                </button>
+            </div>
         </div>
+
         <div id="questions">
             <h2 id="question-title">
-
             </h2>
-            <div id="choices">
+            <ol id="choices">
 
-            </div>
+            </ol>
+        </div>
+
+        <div id="scoreContainer">
+            <p id="correct">
+            </p>
+            <p id="wrong">
+            </p>
         </div>
     </main>
     <script src="./assets/script.js"></script>
