@@ -11,11 +11,31 @@ main {
     justify-content: center;
     margin: 25px auto;
     width: 95%;
+    flex-direction: column;
+}
+
+div {
+    display: flex;
+    flex-direction: column;
 }
 
 button {
     background-color: purple;
     color: white;
+}
+
+ul {
+   margin: 0;
+   padding: 0;
+}
+
+li {
+    list-style-type: none;
+    display: block;
+}
+
+button:hover {
+    background-color: lightpink;
 }
 
 .question-header {
@@ -26,3 +46,4 @@ button {
 .scoreContainer {
     display: none;
 }
+
