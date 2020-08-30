@@ -13,10 +13,9 @@ var submitButton = document.createElement("button");
 submitButton.setAttribute("id", "submit-button");
 var inputForm = document.createElement("input");
 
-
 var highScores = []
 
-highScores = JSON.parse(localStorage.getItem("highScores"))
+highScores = JSON.parse(localStorage.getItem("highScores"));
 
 // Timer function that counts down from 90 second (1.5 min), called when start button is clicked
 function countdown() {
@@ -29,6 +28,7 @@ function countdown() {
             timerEl.textContent = timeLeft + ' second remaining';
             timeLeft--;
         } else {
+            timerEl.textContent = '0';
             pageMessage.textContent = 'Time is Up!  Your final score is ' + score + '. Enter initials: '
             pageMessage.appendChild(inputForm);
             pageMessage.appendChild(submitButton);
@@ -36,16 +36,6 @@ function countdown() {
         }
     }, 1000);
 };
-
-//function for submit button to store high scores
-var submit = function () {
-    var initials = {
-        initials: inputForm.value,
-        score: score
-    }
-    highScores.push(initials);
-    localStorage.setItem("highScores", JSON.stringify(highScores));
-}
 
 //array quiz
 var index = 0;
@@ -56,39 +46,39 @@ var quiz = [
             "a. add addEventListener('mouseclick')",
             "b. addEventListener('target')",
             "c. var UponClick = function(click)",
-            "d. element.addEventListener('click', function)"
+            "d. element.addEventListener('click', function)",
         ],
-        answer: "d. element.addEventListener('click', function)"
+        answer: "d. element.addEventListener('click', function)",
     },
     {
         question: "2. What does document.querySelector('#btn') do?",
         choices: [
-            " targets an element in the HTML by its id",
-            " targets an element in the DOM by its id",
-            " targets element in the DOM by its class",
-            " makes the browser inquire on the element",
+            "a. targets an element in the HTML by its id",
+            "b. targets an element in the DOM by its id",
+            "c. targets element in the DOM by its class",
+            "d. makes the browser inquire on the element",
         ],
-        answer: " targets an element in the DOM by its id"
+        answer: "b. targets an element in the DOM by its id",
     },
-    // {
-    //     question: "3. How can you add a header element to the DOM?",
-    //     choices: [
-    //         "var headerEl = document.createElement('header')",
-    //        "",
-    //         "",
-    //         "",
-    //     ],
-    //     answer: "var headerEl = document.createElement('header')"
-    // },
+    {
+        question: "3. How can you add a header element to the DOM?",
+        choices: [
+            "a. var headerEl = document.createElement('header')",
+            "b. same as in soccer! Header to the DOME!",
+            "c. use your head",
+            "d. <header> to DOM",
+        ],
+        answer: "a. var headerEl = document.createElement('header')",
+    },
     {
         question: "4. What does headerEl.appendChild(textEl) do?",
         choices: [
-            " adds textEl as a child element to the headerEl parent in the CSS",
-            " adds textEl as a child element to the headerEl parent in the HTML",
-            " adds textEl as a child element to the headerEl parent in the DOM",
-            " creates an opportunity for the child to give an appendix to the parent"
+            "a. adds textEl as a child element to the headerEl parent in the CSS",
+            "b. adds textEl as a child element to the headerEl parent in the HTML",
+            "c. adds textEl as a child element to the headerEl parent in the DOM",
+            "d. creates an opportunity for the child to give an appendix to the parent",
         ],
-        answer: " adds textEl as a child element to the headerEl parent in the DOM"
+        answer: "c. adds textEl as a child element to the headerEl parent in the DOM",
     },
     {
         question: "5. How do you pass a number into local storage?",
@@ -98,82 +88,65 @@ var quiz = [
             "c. numerify",
             "d. stringify"
         ],
-        answer: "d. stringify"
+        answer: "d. stringify",
     },
     {
         question: "6. How do you change a string into an array in the DOM?",
         choices: [
-            " parsley()",
-            " parse()",
-            " purse()",
-            " PercyWeasley()"
+            "a. parsley()",
+            "b. parse()",
+            "c. purse()",
+            "d. PercyWeasley()",
         ],
-        answer: " parse()"
+        answer: "b. parse()",
     },
     {
         question: "7. What is 'dragstart' in JavaScript?",
         choices: [
-            "the Opening Ceremonies of The Annual Coders Drag Competition in Palm Springs",
-            "when the coder first starts dragging their code around the JS file to refactor it",
-            "code for 'dragrace,' every coder's secret passion",
-            "an event listener for when the user starts to drag an element"
+            "a. the Opening Ceremonies of The Annual Coders Drag Competition in Palm Springs",
+            "b. when the coder first starts dragging their code around the JS file to refactor it",
+            "c. code for 'dragrace,' every coder's secret passion",
+            "d. an event listener for when the user starts to drag an element",
         ],
-        answer: "an event listener for when the user starts to drag an element"
+        answer: "d. an event listener for when the user starts to drag an element",
     },
     {
         question: "8. What does HTML stand for?",
         choices: [
-            "Hot Toddy Makes Life",
-            "High Tide Marks Lunar",
-            "Hypertext Markup Language",
-            "Hot Toes Model Linens"
+            "a. Hot Toddy Makes Life",
+            "b. High Tide Marks Lunar",
+            "c. Hypertext Markup Language",
+            "d. Hot Toes Model Linens",
         ],
-        answer: "Hypertext Markup Language"
+        answer: "c. Hypertext Markup Language",
     },
     {
         question: "9. What does CSS stand for?",
         choices: [
-            "Coders See Signs",
-            "Can't Stand Silence",
-            "Colon Synch Style",
-            "Cascading Style Sheets"
+            "a. Coders See Signs",
+            "b. Can't Stand Silence",
+            "c. Colon Synch Style",
+            "d. Cascading Style Sheets",
         ],
-        answer: "Cascading Style Sheets"
+        answer: "d. Cascading Style Sheets",
     },
     {
         question: "10. What do you get when you combine HTML, CSS, and Javascript",
         choices: [
-            "all of the below",
-            "an application",
-            "a website",
-            "a headache"
+            "a. all of the below",
+            "b. an application",
+            "c. a website",
+            "d. a headache",
         ],
-        answer: "all of the below"
+        answer: "a. all of the below",
     },
 ];
 
-//style the quiz array so question is black bold TEXT. answers should be BUTTONS, purple background, white text. 
-
-//click start quiz button to start quiz.
-
 //link "view high score" to retrieve high schore from localStorage
-
-//create countdown timer in <header div.timer> section of HTML
-
-//create intro text and "start quiz" button -  on "click", it will load virst item in questions/answers array
-
-//style answers so they change color on "hover"
-
-//use "if" statement to check if right/wrong
-
-//if "right", display "correct!", give "correct sound" and update score in local storage
-
-//if "wrong", display "wrong!" and give a time penalty of ten seconds AND sound buzzer
-
+//add sound to right/wrong alert
 //at end of quiz, display high score. let them ENTER INTIALS (FORM input?)
 //add high score to local storage
 //style everything in CSS....
-//can style hover questions inline in JS I think
 
 //function to find elements on page by clicking
 var findElement = function (event) {
@@ -182,7 +155,7 @@ var findElement = function (event) {
 
 //function to start quiz with button
 var startQuiz = function () {
-    //delete everything in main section page, and load first question (variable 0 of quiz array)
+    //remove intro, and load first question (variable 0 of quiz array)
     var startPage = document.querySelector("#start-screen")
     startPage.remove();
     countdown();
@@ -195,8 +168,8 @@ var loadQuiz = function () {
     var titleEl = document.querySelector("#question-title");
     var currentQuestion = quiz[index];
     titleEl.textContent = currentQuestion.question;
+    choices.innerHTML = "";
 
-    choices.innerHTML = ""
     for (var i = 0; i < currentQuestion.choices.length; i++) {
         var li = document.createElement("li")
         var choiceButton = document.createElement("button");
@@ -205,14 +178,33 @@ var loadQuiz = function () {
         choiceButton.className = "choiceButton"
         choiceButton.setAttribute("value", listItem);
         choiceButton.textContent = listItem;
-        choiceButton.onclick = questionClick;
         choices.appendChild(li);
     }
-    // for (i = 0; i < questions.length; i++) {
-    //     if (pageBodyEl.matches(quiz[index].answer)) {
-    //         correct()
-    //     }
-    // }
+    //user chooses answer function
+    choiceButton.onclick = function () {
+        if (this.value === quiz[index].answer) {
+            document.getElementById("answerResult").textContent = "Correct!"
+            score++
+        }
+        else if (this.value !== quiz[index].answer) {
+            document.getElementById("answerResult").textContent = "Wrong!";
+            timeLeft -= 10;
+            timerEl.textContent = timeLeft;
+            score--
+        }
+        index++;
+        loadQuiz();
+    }
+};
+
+//function for submit button to store high scores
+var submit = function () {
+    var initials = {
+        initials: inputForm.value,
+        score: score
+    }
+    highScores.push(initials);
+    localStorage.setItem("highScores", JSON.stringify(highScores));
 };
 
 var displayScores = function () {
@@ -221,25 +213,10 @@ var displayScores = function () {
         var listItem = highScore[i];
         highScore.appendChild(li);
     }
+};
 
-    //user chooses answer function
-    function questionClick() {
-        if (this.value === quiz[index].answer) {
-            document.getElementById("score-container").textContent = "Correct!"
-            score++
-        }
-        else if (this.value !== quiz[index].answer) {
-            document.getElementById("score-container").textContent = "Wrong!";
-            timeLeft -= 10;
-            timerEl.textContent = timeLeft;
-            score--
-        }
-        index++;
-        loadQuiz();
-    }
-
-    //find elements in HTML/DOM by clicking on them
-    pageBodyEl.addEventListener("click", findElement);
-    //click event for start quiz button
-    startButton.addEventListener("click", startQuiz);
-    submitButton.addEventListener("click", submit);
+//find elements in HTML/DOM by clicking on them
+pageBodyEl.addEventListener("click", findElement);
+//click event for start quiz button
+startButton.addEventListener("click", startQuiz);
+submitButton.addEventListener("click", submit);
