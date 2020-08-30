@@ -28,11 +28,7 @@ function countdown() {
             timerEl.textContent = timeLeft + ' second remaining';
             timeLeft--;
         } else {
-            timerEl.textContent = '0';
-            pageMessage.textContent = 'Time is Up!  Your final score is ' + score + '. Enter initials: '
-            pageMessage.appendChild(inputForm);
-            pageMessage.appendChild(submitButton);
-            submitButton.textContent = "Submit!";
+            endQuiz();
         }
     }, 1000);
 };
@@ -179,44 +175,77 @@ var loadQuiz = function () {
         choiceButton.setAttribute("value", listItem);
         choiceButton.textContent = listItem;
         choices.appendChild(li);
-    }
-    //user chooses answer function
-    choiceButton.onclick = function () {
-        if (this.value === quiz[index].answer) {
-            document.getElementById("answerResult").textContent = "Correct!"
-            score++
+
+        //user chooses answer function
+        choiceButton.onclick = function () {
+            if (this.value === quiz[index].answer) {
+                document.getElementById("answerResult").textContent = "Correct!"
+                score++
+                index++
+                if (currentQuestion === quiz[quiz.length - 1]) {
+                    endQuiz();
+                }
+                else {
+                    loadQuiz();
+                };
+            }
+            else if (this.value !== quiz[index].answer) {
+                document.getElementById("answerResult").textContent = "Wrong!";
+                timeLeft -= 10;
+                timerEl.textContent = timeLeft;
+                score--
+                index++
+                if (currentQuestion === quiz[quiz.length - 1]) {
+                    endQuiz();
+                }
+                else {
+                    loadQuiz();
+                };
+            }
         }
-        else if (this.value !== quiz[index].answer) {
-            document.getElementById("answerResult").textContent = "Wrong!";
-            timeLeft -= 10;
-            timerEl.textContent = timeLeft;
-            score--
-        }
-        index++;
-        loadQuiz();
     }
 };
 
+var endQuiz = function () {
+    timerEl.textContent = '0';
+    pageMessage.textContent = 'Time is Up!  Your final score is ' + score + '. Enter initials: '
+    pageMessage.appendChild(inputForm);
+    pageMessage.appendChild(submitButton);
+    submitButton.textContent = "Submit!";
+};
+
 //function for submit button to store high scores
-var submit = function () {
+var submitInitials = function () {
     var initials = {
         initials: inputForm.value,
         score: score
     }
     highScores.push(initials);
     localStorage.setItem("highScores", JSON.stringify(highScores));
+    showScores;
 };
 
-var displayScores = function () {
-    for (var i = 0; i < currentQuestion.choices.length; i++) {
+var showScores = function () {
+    var storage = localStorage.getItem("highScores", JSON.parse(highScores));
+    console.log(storage);
+    for (var i = 0; i < storage.length; i++) {
         var li = document.createElement("li")
-        var listItem = highScore[i];
+        li.textContent = storage[i];
+        listItem = highScore[i];
         highScore.appendChild(li);
     }
 };
+
+// var displayScores = function () {
+//     for (var i = 0; i < currentQuestion.choices.length; i++) {
+//         var li = document.createElement("li")
+//         var listItem = highScore[i];
+//         highScore.appendChild(li);
+//     }
+// };
 
 //find elements in HTML/DOM by clicking on them
 pageBodyEl.addEventListener("click", findElement);
 //click event for start quiz button
 startButton.addEventListener("click", startQuiz);
-submitButton.addEventListener("click", submit);
+submitButton.addEventListener("click", submitInitials);
