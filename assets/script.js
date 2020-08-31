@@ -193,7 +193,6 @@ var loadQuiz = function () {
                 document.getElementById("answerResult").textContent = "Wrong!";
                 timeLeft -= 10;
                 timerEl.textContent = timeLeft;
-                score--
                 index++
                 if (currentQuestion === quiz[quiz.length - 1]) {
                     endQuiz();
