@@ -5,18 +5,10 @@ var showScores = function () {
     console.log(storage);
     var scoreContainer = document.getElementById("highscores")
     for (var i = 0; i < storage.length; i++) {
-        scoreContainer.textContent = storage[i].initials + " " + storage[i].score;
+        var li = document.createElement("li")
+        li.textContent = storage[i].initials + " " + storage[i].score;
+        scoreContainer.appendChild(li);
     }
-
-
-
-    // for (var i = 0; i < storage.length; i++) {
-    //     var li = document.createElement("li")
-    //     li.textContent = storage[i].initials + " " + storage[i].score;
-    //     var scoreContainer = document.createElement("ol");
-    //     scoreContainer.appendChild(li);
-    //     scoreContainer.textContent = "storage[]";
-    // }
 };
 
 showScores();

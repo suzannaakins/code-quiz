@@ -32,16 +32,19 @@ div {
 button {
     background-color: purple;
     color: white;
-    padding: 0;
+    padding: 5px;
     margin: 0;
     font-size: large;
     border: none;
-    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
 #submit-button {
-    padding: 0;
-    margin: 0;
+    padding: 5px;
+    margin: 50px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
 }
 
 ul {
@@ -69,3 +72,14 @@ button:hover {
     
 }
 
+#quiz-title {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+#quiz-intro {
+    padding-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
