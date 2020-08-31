@@ -2,6 +2,13 @@ header {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    padding: 25px;
+}
+
+header a {
+    padding: 5px 0;
+    text-decoration: none;
 }
 
 main {
@@ -12,6 +19,7 @@ main {
     margin: 25px auto;
     width: 95%;
     flex-direction: column;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
 div {
@@ -28,6 +36,12 @@ button {
     margin: 0;
     font-size: large;
     border: none;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;;
+}
+
+#submit-button {
+    padding: 0;
+    margin: 0;
 }
 
 ul {
@@ -51,6 +65,7 @@ button:hover {
 }
 
 .scoreContainer {
-    display: none;
+    display: block;
+    
 }
 

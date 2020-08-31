@@ -15,7 +15,7 @@ var inputForm = document.createElement("input");
 
 var highScores = []
 
-highScores = JSON.parse(localStorage.getItem("highScores"));
+// highScores = JSON.parse(localStorage.getItem("highScores"));
 
 // Timer function that counts down from 90 second (1.5 min), called when start button is clicked
 function countdown() {
@@ -27,8 +27,6 @@ function countdown() {
         } else if (timeLeft === 1) {
             timerEl.textContent = timeLeft + ' second remaining';
             timeLeft--;
-        } else {
-            endQuiz();
         }
     }, 1000);
 };
@@ -221,30 +219,27 @@ var submitInitials = function () {
     }
     highScores.push(initials);
     localStorage.setItem("highScores", JSON.stringify(highScores));
-    showScores;
+    // showScores;
 };
 
 var showScores = function () {
-    var storage = localStorage.getItem("highScores", JSON.parse(highScores));
+    var storage = JSON.parse(localStorage.getItem("highScores"));
     console.log(storage);
+
     for (var i = 0; i < storage.length; i++) {
         var li = document.createElement("li")
-        li.textContent = storage[i];
-        listItem = highScore[i];
-        highScore.appendChild(li);
+        li.textContent = storage[i].initials + " " + storage[i].score;
+        var scoreContainer = document.createElement("ol");
+        console.log(scoreContainer);
+        scoreContainer.appendChild(li);
+        pageMessage.appendChild(scoreContainer);
     }
 };
-
-// var displayScores = function () {
-//     for (var i = 0; i < currentQuestion.choices.length; i++) {
-//         var li = document.createElement("li")
-//         var listItem = highScore[i];
-//         highScore.appendChild(li);
-//     }
-// };
 
 //find elements in HTML/DOM by clicking on them
 pageBodyEl.addEventListener("click", findElement);
 //click event for start quiz button
 startButton.addEventListener("click", startQuiz);
-submitButton.addEventListener("click", submitInitials);
+submitButton.addEventListener("click", function () {
+    submitInitials(); showScores()
+});
